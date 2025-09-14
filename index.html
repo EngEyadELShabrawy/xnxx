@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar">
+<!--------------------------------------------------------------->
+<head>
+  <meta charset="UTF-8">
+  <title>Data recording</title>
+ <link rel="icon" href="T.A.A.M.U.L Code.jpg" type="image/jpg" >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<!--------------------------------------------------------------->
+  <style>
+        *{
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+/*---------------------------------------------------------------*/
+      /*---------- الالوان-الرسميه-للموقع  ----------*/
+           :root{
+                --main-color:linear-gradient(135deg, #f6d365, #fda085);
+                --fr-main-color:#1a1a1a;
+                --se-main-color:#2c3e50;
+                --th-main-color:#3a7bd5 ;
+                --fr-color:#8fd3f4;
+                --se-color:#a18cd1;
+                --th-color:#C8A46E;
+                --fo-color:#fbc2eb ;
+                --fi-color:#f8f2e6 ;
+                --si-color:#4ecdc4;
+                --se-color:rgb(83, 83, 255) ;
+                --eg-color:linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 3.7% 15.9%)) ;
+                --ni-color:linear-gradient(145deg, hsl(240 3.7% 15.9%), hsl(240 10% 3.9%)) ;
+                --tn-color:linear-gradient(135deg, hsl(210 100% 50%), hsl(210 100% 45%)) ;
+                --il-shadow-color: 0 10px 40px -10px hsl(210 100% 50% / .3) ;
+           }
+/*---------------------------------------------------------------*/
+      /*---------- البنيه-الرايسيه-للموقع   ----------*/
+           body {
+             background: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 3.7% 15.9%));
+             justify-content: center;
+             overflow: hidden; 
+             height: 100vh;
+             padding: 0;
+             margin: 0;
+
+              }
+          .overlay {
+                background: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 3.7% 15.9%));
+                width: 100vw; height: 100vh;
+                backdrop-filter: blur(8px);
+                position: fixed;
+                top: 0; left: 0;
+                 }
+          .container {
+                   position: relative;
+                   z-index: 2;
+                   height: 50vh;
+                   display: flex;
+                   flex-direction: column;
+                   justify-content: center;
+                   align-items: center;
+                   text-align: center;
+                 }
+/*---------------------------------------------------------------*/
+
+  
+    
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 75%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 33%;
+      padding: 10px;
+      background:linear-gradient(145deg, hsl(240 3.7% 15.9%), hsl(240 10% 3.9%));
+      color: goldenrod;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+     
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+   
+    .k {
+     
+      font-size: 32px;
+      margin-bottom: 20px;
+     color: white;
+  transition: opacity 0.3s ease;
+  text-shadow:0px 0px 10px goldenrod ; ;
+    }
+.khat{
+
+border-style: solid ;
+color:#f8a28a;
+width:420px ;
+border-radius: 8px;
+box-shadow: 0 0 8px #fbd454 , 0 0 16px rgb(0, 0, 0);
+}
+/*---------------------------------------------------------------*/
+      /*---------- الانيميشن-الرايسي-للموقع ----------*/
+           .fade-in-up {
+                  animation: fadeInUp 0.8s ease-out forwards;
+                  transform: translateY(30px);
+                  opacity: 0;
+                    }
+
+                    @keyframes fadeInUp {
+                      to {
+                        opacity: 1;
+                        transform: translateY(0);
+                      }
+                    }
+/*---------------------------------------------------------------*/
+  </style>
+<!--------------------------------------------------------------->
+</head>
+<!--------------------------------------------------------------->
+<body>
+<div class="fade-in-up">
+        <div class="overlay">
+                    <br>
+                        <br>
+                            <br>
+                               <br>
+                             <br>
+                        <br>
+                    <br>    
+                    <br>
+   
+ <center>
+  <div class="khat">
+  <div class="container">
+    <form onsubmit="return login(event)">
+      <h1 class="k">🔐 Secure Terminal</h1>
+      <input type="text" id="username" placeholder="username" required>
+      <input type="password" id="password" placeholder="password" required>
+      <br>
+      <button type="submit">ACCESS</button>
+      <p id="error" class="error"></p>
+    </form>
+  </div>
+  </center>
+  </div>
+  </div>
+  <audio id="accessSound" src="access.mp3"></audio>
+  <audio id="deniedSound" src="denied.mp3"></audio>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;
+<!--------------------------------------------------------------->
+  <script>
+  const accessSound = document.getElementById("accessSound");
+  const deniedSound = document.getElementById("deniedSound");
+
+  // تشغيل الصوت عند دخول المستخدم للموقع
+  window.addEventListener("load", () => {
+    accessSound.play().catch(() => {
+      // غالباً سيتم منع التشغيل التلقائي حتى ينقر المستخدم أي شيء
+      console.log("🔇 لم يتم تشغيل الصوت حتى يتم التفاعل مع المستخدم.");
+    });
+  });
+
+  // تشغيل الصوت عند مغادرة المستخدم
+  window.addEventListener("beforeunload", (event) => {
+    // Note: بعض المتصفحات قد لا تسمح بتشغيل الصوت هنا
+    deniedSound.play();
+  });
+
+  function login(event) {
+    event.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("error");
+
+    const validUser = "cyper_x";
+    const validPass = "xnxx";
+
+    if (username === validUser && password === validPass) {
+      accessSound.play();
+      setTimeout(() => {
+        window.location.href = "try.html"; // الانتقال بعد تشغيل الصوت
+      }, 500); // تأخير بسيط حتى يُسمع الصوت
+    } else {
+      deniedSound.play();
+      errorMsg.textContent = "The username or password is incorrect."; 
+       }
+  }
+</script>
+</div>
+<!--------------------------------------------------------------->
+</body>
+<!--------------------------------------------------------------->
+</html>
